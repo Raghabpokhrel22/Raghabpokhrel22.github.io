@@ -6,97 +6,162 @@
 <title>Raghab pokhrel – CV</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; color: #222; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f0f4f8; color: #222; overflow-x: hidden; }
 
   header {
     background: linear-gradient(135deg, #1D9E75 0%, #185FA5 100%);
-    color: white;
-    padding: 3rem 2rem 2rem;
-    text-align: center;
+    color: white; padding: 3rem 2rem 2.5rem;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  header::before {
+    content: ''; position: absolute; top: -60px; left: -60px;
+    width: 220px; height: 220px; border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+    animation: floatBubble 6s ease-in-out infinite;
+  }
+  header::after {
+    content: ''; position: absolute; bottom: -80px; right: -40px;
+    width: 280px; height: 280px; border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+    animation: floatBubble 8s ease-in-out infinite reverse;
+  }
+  @keyframes floatBubble {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(20px); }
   }
   .avatar {
-    width: 100px; height: 100px; border-radius: 50%;
-    background: rgba(255,255,255,0.25);
+    width: 110px; height: 110px; border-radius: 50%; overflow: hidden;
+    background: rgba(255,255,255,0.22);
     display: flex; align-items: center; justify-content: center;
-    font-size: 2.5rem; font-weight: 700; color: white;
+    font-size: 2.8rem; font-weight: 700; color: white;
     margin: 0 auto 1rem; border: 4px solid rgba(255,255,255,0.5);
+    animation: popIn 0.7s cubic-bezier(0.175,0.885,0.32,1.275);
+    position: relative; z-index: 1;
+    transition: transform 0.3s;
   }
-  header h1 { font-size: 2.2rem; font-weight: 700; letter-spacing: 1px; }
-  header p.title { font-size: 1.1rem; opacity: 0.9; margin: 0.3rem 0 1rem; }
-  header p.bio { font-size: 0.95rem; opacity: 0.85; max-width: 600px; margin: 0 auto 1.5rem; line-height: 1.6; }
-
+  .avatar:hover { transform: scale(1.08) rotate(3deg); }
+  @keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  header h1 { font-size: 2.4rem; font-weight: 700; letter-spacing: 2px; animation: slideDown 0.6s ease 0.2s both; position: relative; z-index: 1; }
+  header p.title { font-size: 1.05rem; opacity: 0.9; margin: 0.3rem 0 0.8rem; animation: slideDown 0.6s ease 0.35s both; position: relative; z-index: 1; }
+  header p.bio { font-size: 0.93rem; opacity: 0.85; max-width: 620px; margin: 0 auto 1.5rem; line-height: 1.7; animation: slideDown 0.6s ease 0.5s both; position: relative; z-index: 1; }
+  @keyframes slideDown {
+    0% { transform: translateY(-20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
   .contact-bar {
-    display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
-    margin-top: 1rem;
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 0.7rem;
+    margin-top: 1rem; position: relative; z-index: 1;
+    animation: slideDown 0.6s ease 0.65s both;
   }
   .contact-bar a {
     color: white; text-decoration: none;
-    background: rgba(255,255,255,0.18);
-    padding: 0.4rem 1rem; border-radius: 20px;
-    font-size: 0.88rem; border: 1px solid rgba(255,255,255,0.35);
-    transition: background 0.2s;
+    background: rgba(255,255,255,0.15);
+    padding: 0.45rem 1.1rem; border-radius: 25px;
+    font-size: 0.85rem; border: 1px solid rgba(255,255,255,0.35);
+    transition: all 0.25s ease;
   }
-  .contact-bar a:hover { background: rgba(255,255,255,0.32); }
+  .contact-bar a:hover {
+    background: rgba(255,255,255,0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
 
-  main { max-width: 900px; margin: 2rem auto; padding: 0 1rem 3rem; }
+  main { max-width: 920px; margin: 2rem auto; padding: 0 1rem 3rem; }
 
-  section { margin-bottom: 2rem; }
+  section {
+    margin-bottom: 2.2rem;
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  section.visible { opacity: 1; transform: translateY(0); }
+
   section h2 {
-    font-size: 1.1rem; font-weight: 700; text-transform: uppercase;
-    letter-spacing: 2px; color: #185FA5;
+    font-size: 1rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2.5px; color: #185FA5;
     border-bottom: 3px solid #1D9E75;
-    padding-bottom: 0.4rem; margin-bottom: 1.2rem;
+    padding-bottom: 0.4rem; margin-bottom: 1.3rem;
+    display: flex; align-items: center; gap: 8px;
   }
 
   .card {
-    background: white; border-radius: 12px;
-    padding: 1.2rem 1.5rem; margin-bottom: 1rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    background: white; border-radius: 14px;
+    padding: 1.3rem 1.6rem; margin-bottom: 1rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
     border-left: 5px solid #1D9E75;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
   }
+  .card:hover { transform: translateX(6px); box-shadow: 0 6px 24px rgba(0,0,0,0.11); }
   .card h3 { font-size: 1rem; font-weight: 700; color: #185FA5; }
-  .card .meta { font-size: 0.85rem; color: #666; margin: 0.2rem 0 0.7rem; }
-  .card ul { padding-left: 1.2rem; }
-  .card ul li { font-size: 0.92rem; color: #444; margin-bottom: 0.3rem; line-height: 1.5; }
+  .card .meta { font-size: 0.83rem; color: #888; margin: 0.3rem 0 0.8rem; }
+  .card ul { padding-left: 1.3rem; }
+  .card ul li { font-size: 0.91rem; color: #444; margin-bottom: 0.35rem; line-height: 1.55; transition: color 0.2s; }
+  .card:hover ul li { color: #222; }
 
-  .skills-grid {
-    display: flex; flex-wrap: wrap; gap: 0.6rem;
+  .badge {
+    display: inline-block; font-size: 0.72rem; font-weight: 700;
+    padding: 2px 8px; border-radius: 10px;
+    background: #E1F5EE; color: #0F6E56;
+    border: 1px solid #5DCAA5; margin-left: 8px; vertical-align: middle;
   }
+
+  .skills-grid { display: flex; flex-wrap: wrap; gap: 0.6rem; }
   .skill-tag {
-    padding: 0.4rem 1rem; border-radius: 20px;
-    font-size: 0.88rem; font-weight: 600;
+    padding: 0.42rem 1.1rem; border-radius: 25px;
+    font-size: 0.86rem; font-weight: 600; cursor: default;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: inline-block;
   }
-  .skill-tag.green { background: #E1F5EE; color: #0F6E56; border: 1px solid #5DCAA5; }
-  .skill-tag.blue  { background: #E6F1FB; color: #185FA5; border: 1px solid #85B7EB; }
-  .skill-tag.purple{ background: #EEEDFE; color: #3C3489; border: 1px solid #AFA9EC; }
-  .skill-tag.amber { background: #FAEEDA; color: #633806; border: 1px solid #EF9F27; }
+  .skill-tag:hover { transform: translateY(-3px) scale(1.05); box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+  .skill-tag.green  { background: #E1F5EE; color: #0F6E56; border: 1px solid #5DCAA5; }
+  .skill-tag.blue   { background: #E6F1FB; color: #185FA5; border: 1px solid #85B7EB; }
+  .skill-tag.purple { background: #EEEDFE; color: #3C3489; border: 1px solid #AFA9EC; }
+  .skill-tag.amber  { background: #FAEEDA; color: #633806; border: 1px solid #EF9F27; }
 
   .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
-
   .info-card {
-    background: white; border-radius: 12px;
-    padding: 1.2rem 1.5rem;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    background: white; border-radius: 14px; padding: 1.3rem 1.6rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
   }
-  .info-card h3 { font-size: 0.95rem; font-weight: 700; color: #185FA5; margin-bottom: 0.5rem; }
-  .info-card p, .info-card li { font-size: 0.9rem; color: #444; line-height: 1.6; }
+  .info-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+  .info-card h3 { font-size: 0.93rem; font-weight: 700; color: #185FA5; margin-bottom: 0.6rem; }
+  .info-card p, .info-card li { font-size: 0.9rem; color: #444; line-height: 1.65; }
   .info-card ul { padding-left: 1.1rem; }
+
+  #topBtn {
+    position: fixed; bottom: 2rem; right: 2rem;
+    background: linear-gradient(135deg, #1D9E75, #185FA5);
+    color: white; border: none; border-radius: 50%;
+    width: 46px; height: 46px; font-size: 1.3rem;
+    cursor: pointer; box-shadow: 0 4px 14px rgba(0,0,0,0.2);
+    opacity: 0; transition: opacity 0.3s, transform 0.3s;
+    display: flex; align-items: center; justify-content: center; z-index: 999;
+  }
+  #topBtn.show { opacity: 1; }
+  #topBtn:hover { transform: scale(1.12); }
 
   @media (max-width: 600px) {
     .two-col { grid-template-columns: 1fr; }
-    header h1 { font-size: 1.6rem; }
+    header h1 { font-size: 1.7rem; }
   }
 </style>
 </head>
 <body>
 
 <header>
-  <div class="avatar">RP</div>
-  <h1>RAGHAB POKHREL</h1>
+  <div class="avatar">
+  <img src="photo.jpg" alt="Raghab pokhrel" 
+  style="width:100%;height:100%;border-radius:50%;object-fit:cover;">
+</div>
+  <h1>RAGHAB <span style="font-weight:400;font-size:1.9rem;letter-spacing:1px;">pokhrel</span></h1>
   <p class="title">MSc Student – Integrated Climate System Sciences</p>
-  <p class="bio">Reliable and hardworking with proven experience in warehouse, logistics, retail, delivery operations and Student assistants. Currently pursuing a Master of Science at Universität Hamburg. Physically fit, punctual, and committed to maintaining clean, organized work areas.</p>
+  <p class="bio">Reliable and hardworking with proven experience in warehouse, logistics, retail, and delivery operations. Currently pursuing a Master of Science at Universität Hamburg. Physically fit, punctual, and committed to maintaining clean, organized work areas.</p>
   <div class="contact-bar">
-    <a href="mailto:raghabpokhrel22@gmail.com">✉ raghabpokhrel22@gmail.com</a>
+    <a href="mailto:raghab.pokhrel@studium.uni-hamburg.de">✉ raghab.pokhrel@studium.uni-hamburg.de</a>
     <a href="tel:+4917785041955">📞 +49 177 8504195</a>
     <a href="https://github.com/Raghabpokhrel22" target="_blank">⌥ github.com/Raghabpokhrel22</a>
     <a href="#">📍 Hamburg, Germany</a>
@@ -106,11 +171,10 @@
 <main>
 
   <section>
-    <h2>Work Experience</h2>
-
+    <h2>💼 Work Experience</h2>
     <div class="card">
-      <h3>Warehouse Assistant / Order Picker</h3>
-      <p class="meta">Various Companies in Germany (via Jobvalley) | 2022 – 2025</p>
+      <h3>Warehouse Assistant / Order Picker <span class="badge">2022–2025</span></h3>
+      <p class="meta">📦 Various Companies in Germany (via Jobvalley)</p>
       <ul>
         <li>Picking, packing, and handling goods in fast-paced warehouse environments</li>
         <li>Keeping work areas clean and organized</li>
@@ -119,10 +183,9 @@
         <li>Team-based work in time-sensitive operations</li>
       </ul>
     </div>
-
-    <div class="card" style="border-left-color: #185FA5;">
-      <h3>Delivery Rider</h3>
-      <p class="meta">Gorillas GmbH, Germany | 2023</p>
+    <div class="card" style="border-left-color:#185FA5;">
+      <h3>Delivery Rider <span class="badge" style="background:#E6F1FB;color:#185FA5;border-color:#85B7EB;">2023</span></h3>
+      <p class="meta">🛵 Gorillas GmbH, Germany</p>
       <ul>
         <li>Timely delivery of customer orders in all weather conditions</li>
         <li>Responsible handling and care of goods</li>
@@ -130,10 +193,9 @@
         <li>Active physical work with consistency</li>
       </ul>
     </div>
-
-    <div class="card" style="border-left-color: #7F77DD;">
-      <h3>Retail Support Staff</h3>
-      <p class="meta">Various Retail Stores (New Yorker, H&M, Zara) | 2022 – 2025</p>
+    <div class="card" style="border-left-color:#7F77DD;">
+      <h3>Retail Support Staff <span class="badge" style="background:#EEEDFE;color:#3C3489;border-color:#AFA9EC;">2022–2025</span></h3>
+      <p class="meta">🛍 New Yorker, H&amp;M, Zara</p>
       <ul>
         <li>Assisting store teams during busy hours</li>
         <li>Maintaining cleanliness and organization in sales areas</li>
@@ -144,11 +206,10 @@
   </section>
 
   <section>
-    <h2>Academic Experience</h2>
-
-    <div class="card" style="border-left-color: #1D9E75;">
+    <h2>🎓 Academic Experience</h2>
+    <div class="card" style="border-left-color:#1D9E75;">
       <h3>Student Assistant – Digital City Science</h3>
-      <p class="meta">HafenCity University Hamburg (HCU) | Hamburg, Germany</p>
+      <p class="meta">🏛 HafenCity University Hamburg (HCU) | Hamburg, Germany</p>
       <ul>
         <li>Supporting research in digital city science and urban data analysis</li>
         <li>Assisting with data collection, processing, and visualization tasks</li>
@@ -156,10 +217,9 @@
         <li>Collaborating with researchers and faculty in a team environment</li>
       </ul>
     </div>
-
-    <div class="card" style="border-left-color: #378ADD;">
+    <div class="card" style="border-left-color:#378ADD;">
       <h3>Student Assistant – Data Analysis, Climate Impact in Agriculture</h3>
-      <p class="meta">Universität Hamburg | Hamburg, Germany</p>
+      <p class="meta">🌍 Universität Hamburg | Hamburg, Germany</p>
       <ul>
         <li>Analysing climate datasets to assess impacts on agricultural systems</li>
         <li>Processing and visualizing meteorological and agronomic data</li>
@@ -170,16 +230,16 @@
   </section>
 
   <section>
-    <h2>Skills</h2>
+    <h2>⚡ Skills</h2>
     <div class="skills-grid">
-      <span class="skill-tag green">Reliable & Punctual</span>
-      <span class="skill-tag green">Independent & Team Player</span>
+      <span class="skill-tag green">Reliable &amp; Punctual</span>
+      <span class="skill-tag green">Independent &amp; Team Player</span>
       <span class="skill-tag blue">Warehouse Operations</span>
-      <span class="skill-tag blue">Order Picking & Packing</span>
+      <span class="skill-tag blue">Order Picking &amp; Packing</span>
       <span class="skill-tag purple">Retail Support</span>
       <span class="skill-tag purple">Stock Management</span>
       <span class="skill-tag amber">Safe Equipment Handling</span>
-      <span class="skill-tag amber">Physically Fit & Active</span>
+      <span class="skill-tag amber">Physically Fit &amp; Active</span>
       <span class="skill-tag green">Data Analysis</span>
       <span class="skill-tag blue">Attentive to Instructions</span>
       <span class="skill-tag purple">Quick Learner</span>
@@ -187,7 +247,7 @@
   </section>
 
   <section>
-    <h2>Education & Languages</h2>
+    <h2>📚 Education &amp; Languages</h2>
     <div class="two-col">
       <div class="info-card">
         <h3>🎓 Education</h3>
@@ -202,12 +262,30 @@
         </ul>
         <br>
         <h3>📅 Availability</h3>
-        <p>Part-time position<br>Flexible weekdays & weekends</p>
+        <p>Part-time position<br>Flexible weekdays &amp; weekends</p>
       </div>
     </div>
   </section>
 
 </main>
+
+<button id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  sections.forEach(s => observer.observe(s));
+
+  window.addEventListener('scroll', () => {
+    document.getElementById('topBtn').classList.toggle('show', window.scrollY > 300);
+  });
+</script>
 
 </body>
 </html>
